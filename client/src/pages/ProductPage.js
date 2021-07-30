@@ -9,7 +9,7 @@ import Loader from '../components/Loader'
 function ProductPage({ match, history }) {
   const { loading, product, error } = useProduct(match.params.id)
 
-  const [qty, setQty] = useState(0)
+  const [qty, setQty] = useState(1)
 
   const addToCartHandler = () => {
     history.push(`/cart/${match.params.id}?qty=${qty}`)
