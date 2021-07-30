@@ -1,19 +1,19 @@
-import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { listProductDetails } from '../actions/productActions'
 
 const useProduct = (id) => {
-  const [product, setProduct] = useState({})
+  const dispatch = useDispatch()
+  const { loading, product, error } = useSelector(
+    (state) => state.productDetails
+  )
 
-  // When component loads, fetch the product
+  // When component loads, fetch the produc
   useEffect(() => {
-    const fetchProduct = async function () {
-      const { data } = await axios.get(`/api/products/${id}`)
-      setProduct(data)
-    }
-    fetchProduct()
-  }, [id])
+    dispatch(listProductDetails(id))
+  }, [id, dispatch])
 
-  return product
+  return { loading, product, error }
 }
 
 export default useProduct
