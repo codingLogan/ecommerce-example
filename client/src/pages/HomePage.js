@@ -2,6 +2,8 @@ import React from 'react'
 import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
 import useProducts from '../hooks/useProducts'
+import Message from '../components/Message'
+import Loader from '../components/Loader'
 
 function HomePage() {
   // Component Level State
@@ -11,9 +13,9 @@ function HomePage() {
     <>
       <h1>Products</h1>
       {loading ? (
-        <h2>Loading</h2>
+        <Loader />
       ) : error ? (
-        <h3>{error}</h3>
+        <Message variant='danger'>{error}</Message>
       ) : (
         <Row>
           {products.map((product) => (
