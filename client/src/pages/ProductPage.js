@@ -2,10 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
 import Rating from '../components/Rating'
-import products from '../products'
+import useProduct from '../hooks/useProduct'
 
 function ProductPage({ match }) {
-  const product = products.find((p) => p._id === match.params.id)
+  const product = useProduct(match.params.id)
 
   return (
     <>
@@ -57,7 +57,7 @@ function ProductPage({ match }) {
                 <Button
                   className='btn-block'
                   type='button'
-                  disabled={product.countInStock == 0}
+                  disabled={product.countInStock === 0}
                 >
                   Add To Card
                 </Button>

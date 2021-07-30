@@ -1,9 +1,12 @@
 import React from 'react'
 import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
-import products from '../products'
+import useProducts from '../hooks/useProducts'
 
 function HomePage() {
+  // Component Level State
+  const products = useProducts()
+
   return (
     <>
       <h1>Products</h1>
