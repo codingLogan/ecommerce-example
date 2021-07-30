@@ -11,7 +11,7 @@ const useProduct = (id) => {
       setProduct(data)
     }
     fetchProduct()
-  }, [])
+  }, [id])
 
   return product
 }
