@@ -3,6 +3,7 @@ import {
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
+  USER_LOGOUT,
 } from '../constants/userContants'
 import { buildErrorOfType } from './actionHelpers'
 
@@ -36,4 +37,11 @@ export const login = (email, password) => async (dispatch) => {
   } catch (error) {
     dispatch(buildErrorOfType(error, USER_LOGIN_FAIL))
   }
+}
+
+export const logout = () => (dispatch) => {
+  localStorage.removeItem('userInfo')
+  dispatch({
+    type: USER_LOGOUT,
+  })
 }
