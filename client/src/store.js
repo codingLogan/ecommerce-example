@@ -6,7 +6,7 @@ import {
   productListReducer,
 } from './reducers/productReducers'
 import { cartReducer } from './reducers/cartReducers'
-import { userLoginReducer } from './reducers/userReducers'
+import { userLoginReducer, userRegisterReducer } from './reducers/userReducers'
 
 // This is the list of state you can select from
 const reducer = combineReducers({
@@ -14,6 +14,7 @@ const reducer = combineReducers({
   productDetails: productDetailsReducer,
   cart: cartReducer,
   userLogin: userLoginReducer,
+  userRegister: userRegisterReducer,
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
