@@ -12,7 +12,7 @@ function ShippingPage({ history }) {
   const [address, setAddress] = useState(shippingAddress.address ?? '')
   const [city, setCity] = useState(shippingAddress.city ?? '')
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode ?? '')
-  const [country, setCountry] = useState(shippingAddress.state ?? '')
+  const [country, setCountry] = useState(shippingAddress.country ?? '')
 
   const dispatch = useDispatch()
 
