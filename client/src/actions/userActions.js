@@ -10,6 +10,9 @@ import {
   USER_DETAILS_FAIL,
   USER_DETAILS_REQUEST,
   USER_DETAILS_SUCCESS,
+  USER_UPDATE_PROFILE_REQUEST,
+  USER_UPDATE_PROFILE_SUCCESS,
+  USER_UPDATE_PROFILE_FAIL,
 } from '../constants/userContants'
 import { buildErrorOfType } from './actionHelpers'
 
@@ -114,5 +117,33 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     })
   } catch (error) {
     dispatch(buildErrorOfType(error, USER_DETAILS_FAIL))
+  }
+}
+
+export const updateUserProfile = (user) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_UPDATE_PROFILE_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    const { data } = await axios.put(`/api/users/profile`, user, config)
+
+    dispatch({
+      type: USER_UPDATE_PROFILE_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch(buildErrorOfType(error, USER_UPDATE_PROFILE_FAIL))
   }
 }

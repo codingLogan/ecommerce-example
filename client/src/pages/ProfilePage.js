@@ -3,7 +3,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { getUserDetails } from '../actions/userActions'
+import { getUserDetails, updateUserProfile } from '../actions/userActions'
 
 function ProfilePage({ location, history }) {
   const [name, setName] = useState('')
@@ -19,6 +19,9 @@ function ProfilePage({ location, history }) {
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
+
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
+  const { success } = userUpdateProfile
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
@@ -41,7 +44,7 @@ function ProfilePage({ location, history }) {
     if (password !== confirmPassword) {
       setMessage('Passwords do no match')
     } else {
-      //   distpach(updateProfile())
+      dispatch(updateUserProfile({ id: user._id, name, email, password }))
     }
   }
 
@@ -51,6 +54,7 @@ function ProfilePage({ location, history }) {
         <h2>User Profile</h2>
 
         {message && <Message variant='danger'>{message}</Message>}
+        {success && <Message variant='success'>Profile Updated</Message>}
         {error && <Message variant='danger'>{error}</Message>}
         {loading && <Loader />}
 
