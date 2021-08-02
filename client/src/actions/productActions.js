@@ -7,16 +7,7 @@ import {
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
 } from '../constants/productConstants'
-
-function buildErrorOfType(error, type) {
-  return {
-    type,
-    payload:
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message,
-  }
-}
+import { buildErrorOfType } from './actionHelpers'
 
 export const listProducts = () => async (dispatch) => {
   try {
