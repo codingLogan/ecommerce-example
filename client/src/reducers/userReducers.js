@@ -18,9 +18,11 @@ import {
   USER_LIST_SUCCESS,
   USER_LIST_FAIL,
   USER_LIST_RESET,
+  USER_DELETE_REQUEST,
+  USER_DELETE_SUCCESS,
+  USER_DELETE_FAIL,
 } from '../constants/userContants.js'
 
-// action has type and payload
 export const userLoginReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_LOGIN_REQUEST:
@@ -36,7 +38,6 @@ export const userLoginReducer = (state = {}, action) => {
   }
 }
 
-// action has type and payload
 export const userRegisterReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_REGISTER_REQUEST:
@@ -50,7 +51,6 @@ export const userRegisterReducer = (state = {}, action) => {
   }
 }
 
-// action has type and payload
 export const userDetailsReducer = (state = { user: {} }, action) => {
   switch (action.type) {
     case USER_DETAILS_REQUEST:
@@ -66,7 +66,6 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
   }
 }
 
-// action has type and payload
 export const userUpdateProfileReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_UPDATE_PROFILE_REQUEST:
@@ -82,7 +81,6 @@ export const userUpdateProfileReducer = (state = {}, action) => {
   }
 }
 
-// action has type and payload
 export const userListReducer = (state = { users: [] }, action) => {
   switch (action.type) {
     case USER_LIST_REQUEST:
@@ -93,6 +91,19 @@ export const userListReducer = (state = { users: [] }, action) => {
       return { loading: false, error: action.payload }
     case USER_LIST_RESET:
       return { users: [] }
+    default:
+      return state
+  }
+}
+
+export const userDeleteReducer = (state = {}, action) => {
+  switch (action.type) {
+    case USER_DELETE_REQUEST:
+      return { loading: true }
+    case USER_DELETE_SUCCESS:
+      return { loading: false, success: true }
+    case USER_DELETE_FAIL:
+      return { loading: false, error: action.payload }
     default:
       return state
   }
