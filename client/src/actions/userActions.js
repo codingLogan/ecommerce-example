@@ -184,11 +184,6 @@ export const listUsers = () => async (dispatch, getState) => {
       type: USER_LIST_SUCCESS,
       payload: data,
     })
-
-    dispatch({
-      type: USER_LOGIN_SUCCESS,
-      payload: data,
-    })
   } catch (error) {
     dispatch(buildErrorOfType(error, USER_LIST_FAIL))
   }

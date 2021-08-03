@@ -55,7 +55,7 @@ function OrderPage({ match }) {
         setSdkReady(true)
       }
     }
-  }, [dispatch, order, orderId])
+  }, [dispatch, order, orderId, successPay])
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult)

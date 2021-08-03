@@ -29,7 +29,7 @@ function ProfilePage({ location, history }) {
   const orderListMy = useSelector((state) => state.orderListMy)
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy
 
-  const redirect = location.search ? location.search.split('=')[1] : '/'
+  // const redirect = location.search ? location.search.split('=')[1] : '/'
 
   useEffect(() => {
     if (!userInfo) {
