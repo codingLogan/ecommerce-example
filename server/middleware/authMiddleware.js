@@ -15,6 +15,7 @@ const protect = asyncHandler(async (req, res, next) => {
 
       // Set the User on the request object when token is verified
       req.user = await User.findById(decoded.id).select('-password')
+      console.log(req.user)
     } catch (error) {
       console.error(error)
       res.status(401)
