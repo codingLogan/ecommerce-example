@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { listProductDetails } from '../actions/productActions'
+import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 
 const useProduct = (id) => {
   const dispatch = useDispatch()
@@ -8,12 +9,19 @@ const useProduct = (id) => {
     (state) => state.productDetails
   )
 
+  const { error: errorProductReview, success: successProductReview } =
+    useSelector((state) => state.productCreateReview)
+
   // When component loads, fetch the produc
   useEffect(() => {
-    dispatch(listProductDetails(id))
-  }, [id, dispatch])
+    if (successProductReview) {
+      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
+    }
 
-  return { loading, product, error }
+    dispatch(listProductDetails(id))
+  }, [id, dispatch, successProductReview])
+
+  return { loading, product, error, errorProductReview, successProductReview }
 }
 
 export default useProduct
