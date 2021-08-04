@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import Helmet from 'react-helmet'
 import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
 import useProducts from '../hooks/useProducts'
@@ -6,6 +8,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Paginate from '../components/Paginate'
 import ProductCarousel from '../components/ProductCarousel'
+import Meta from '../components/Meta'
 
 function HomePage({ match }) {
   const keyword = match.params.keyword
@@ -17,7 +20,15 @@ function HomePage({ match }) {
 
   return (
     <>
-      {!keyword && <ProductCarousel />}
+      <Meta />
+
+      {!keyword ? (
+        <ProductCarousel />
+      ) : (
+        <Link to='/' className='btn btn-light'>
+          Go Back
+        </Link>
+      )}
 
       <h1>Products</h1>
       {loading ? (

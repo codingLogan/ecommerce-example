@@ -8,6 +8,7 @@ import useProduct from '../hooks/useProduct'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { createProductReview } from '../actions/productActions'
+import Meta from '../components/Meta'
 
 function ProductPage({ match, history }) {
   const dispatch = useDispatch()
@@ -55,6 +56,8 @@ function ProductPage({ match, history }) {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
+          <Meta title={product.name} />
+
           <Row>
             <Col md={6}>
               <Image src={product.image} alt={product.name} fluid />
