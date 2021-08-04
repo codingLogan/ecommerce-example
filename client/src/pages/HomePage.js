@@ -5,9 +5,9 @@ import useProducts from '../hooks/useProducts'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 
-function HomePage() {
-  // Component Level State
-  const { loading, products, error } = useProducts()
+function HomePage({ match }) {
+  const keyword = match.params.keyword
+  const { loading, products, error } = useProducts(keyword)
 
   return (
     <>
