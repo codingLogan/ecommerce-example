@@ -8,7 +8,6 @@ import useProduct from '../hooks/useProduct'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { createProductReview } from '../actions/productActions'
-import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 
 function ProductPage({ match, history }) {
   const dispatch = useDispatch()

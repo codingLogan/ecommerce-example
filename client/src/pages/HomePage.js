@@ -5,6 +5,7 @@ import useProducts from '../hooks/useProducts'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Paginate from '../components/Paginate'
+import ProductCarousel from '../components/ProductCarousel'
 
 function HomePage({ match }) {
   const keyword = match.params.keyword
@@ -16,6 +17,8 @@ function HomePage({ match }) {
 
   return (
     <>
+      {!keyword && <ProductCarousel />}
+
       <h1>Products</h1>
       {loading ? (
         <Loader />
